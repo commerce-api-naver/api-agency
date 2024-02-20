@@ -1,0 +1,84 @@
+name: "애플리케이션 재발송 요청"
+description: "대행사 애플리케이션 인증정보(애플리케이션 ID, Secret) 재발송 요청"
+title: "[인증정보] 대행사 애플리케이션 인증정보 재발송 요청"
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # 애플리케이션 인증정보 재발송
+        대행사 애플리케이션 인증정보는 API대행사 최초 신청 시 작성하신 담당자 연락처로만 발송됩니다.
+        그 외 다른 연락처로는 재발송을 도와드리지 않습니다.
+
+        > [!WARNING]
+        > 대행사 애플리케이션의 인증정보(애플리케이션 ID, Secret)는 관계자 외 제 3자에게 제공하거나 외부에 공개하여선 안됩니다.
+  - type: markdown
+    attributes:
+      value: |
+        ### API대행사 확인
+        요청 대상 API대행사를 식별할 수 있는 검증용 API 호출건의 호출 정보를 입력합니다.
+        - 제출하신 호출 정보로 대행사를 식별할 수 없는 경우 요청은 처리되지 않습니다.
+        - 검증용 API 호출건은 요청일 기준 최근 1주일 이내 호출건으로 작성해주시기 바랍니다.
+  - type: input
+    id: agency-name
+    attributes:
+      label: 대행사명
+      description: 최초 신청 시 등록 정보 기준
+    validations:
+      required: true
+  - type: input
+    id: agency-api-name
+    attributes:
+      label: 호출 API
+      description: |
+        검증용 API 호출 진행에 사용한 API 이름
+        (예: "[상품] 채널 상품 조회" 또는 "GET /v2/products/channel-products/{channelProductNo}")
+    validations:
+      required: true
+  - type: input
+    id: agency-api-request
+    attributes:
+      label: 호출 일시
+      description: 검증용 API 호출을 진행한 대략적인 날짜와 시간 (한국 표준시)
+    validations:
+      required: true
+  - type: input
+    id: agency-api-traceid
+    attributes:
+      label: Trace ID
+      description: 검증용 API 호출건에 HTTP 응답 헤더(Response Header)로 제공된 'GNCP-GW-Trace-ID' 항목 값
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 인증정보 재발송 요청
+        애플리케이션 인증정보를 확인하려면 2개 채널(이메일/SMS)로 발송된 내용을 조합해야 합니다.
+        각 채널별로 전달되는 내용은 서로 쌍을 이루어 생성됩니다.
+        - 이메일: 암호화 된 PDF 파일 첨부 전달 (인증정보 수록)
+        - SMS: PDF 패스워드 전달
+  - type: dropdown
+    id: reasons
+    attributes:
+      label: 재발송 요청 사유
+      options:
+        - 인증정보 분실
+        - 이메일/SMS 미수신
+        - 애플리케이션 Secret 변경
+    validations:
+      required: true
+  - type: textarea
+    id: appendix
+    attributes:
+      label: 추가 입력 (선택)
+      description: Markdown 서식 지원
+      render: markdown
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > 요청 내용은 게시 즉시 다른 사용자에게 공개되며 되돌릴 수 없습니다.
+        > 작성 내용 중 공개되어선 안되는 정보가 있는지 다시 확인하시기 바랍니다. (개인정보, 대외비 등)

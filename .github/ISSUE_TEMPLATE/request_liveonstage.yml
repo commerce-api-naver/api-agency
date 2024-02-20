@@ -1,0 +1,82 @@
+name: "라이브 서비스 전환 요청"
+description: "실제 서비스 제공 준비를 완료한 API대행사의 대행사 목록 내 표시 요청"
+title: "[운영전환] 라이브 서비스 전환 요청"
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # API대행사 라이브 서비스 전환
+        라이브 서비스 전환 요청이 처리되면 귀하가 운영중인 대행사가 스마트스토어센터 대행사 명단에 표시됩니다.
+        이후 판매자는 API대행사 시스템이 판매자 스마트스토어 데이터에 접근할 수 있도록 대행사를 설정할 수 있게됩니다.
+  - type: markdown
+    attributes:
+      value: |
+        ### API대행사 확인
+        요청 대상 API대행사를 식별할 수 있는 검증용 API 호출건의 호출 정보를 입력합니다.
+        - 제출하신 호출 정보로 대행사를 식별할 수 없는 경우 요청은 처리되지 않습니다.
+        - 검증용 API 호출건은 요청일 기준 최근 1주일 이내 호출건으로 작성해주시기 바랍니다.
+  - type: input
+    id: agency-name
+    attributes:
+      label: 대행사명
+      description: 최초 신청 시 등록 정보 기준
+    validations:
+      required: true
+  - type: input
+    id: agency-api-name
+    attributes:
+      label: 호출 API
+      description: |
+        검증용 API 호출 진행에 사용한 API 이름
+        (예: "[상품] 채널 상품 조회" 또는 "GET /v2/products/channel-products/{channelProductNo}")
+    validations:
+      required: true
+  - type: input
+    id: agency-api-request
+    attributes:
+      label: 호출 일시
+      description: 검증용 API 호출을 진행한 대략적인 날짜와 시간 (한국 표준시)
+    validations:
+      required: true
+  - type: input
+    id: agency-api-traceid
+    attributes:
+      label: Trace ID
+      description: 검증용 API 호출건에 HTTP 응답 헤더(Response Header)로 제공된 'GNCP-GW-Trace-ID' 항목 값
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 운영 준비 확인
+        라이브 서비스 전환을 요청하는 것은 아래 조건을 모두 충족하여 스마트스토어 판매자 대상 실제 서비스 제공 및 운영 준비를 완료하였음을 의미합니다.
+        1. '커머스API 테스트 버전' 연동 테스트-검증을 모두 완료함
+        2. 잠재적인 전 스마트스토어 판매자를 대상으로 실제 서비스 제공 준비를 모두 완료함
+        3. API대행사 서비스 제공에 필요한 모든 운영 요소 준비를 완료함 (고객문의 대응 포함)
+
+        요청 내용은 신청 후 최대 +3영업일 이내 적용됩니다.
+        적용 후 곧바로 스마트스토어센터 대행사 명단 표시가 시작됩니다. (스토어 전시관리 > 스토어 관리 > 'API 정보' 탭)
+
+        그 외 내용은 신청 시 동의하신 [이용약관](#)을 따릅니다.
+  - type: checkboxes
+    attributes:
+      label: 운영 준비 확인 사항을 모두 확인하셨나요?
+      options:
+        - label: 네, 위 사항을 모두 확인하고 이해하였습니다.
+          required: true
+  - type: textarea
+    id: appendix
+    attributes:
+      label: 추가 입력 (선택)
+      description: Markdown 서식 지원
+      render: markdown
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > 요청 내용은 게시 즉시 다른 사용자에게 공개되며 되돌릴 수 없습니다.
+        > 작성 내용 중 공개되어선 안되는 정보가 있는지 다시 확인하시기 바랍니다. (개인정보, 대외비 등)
