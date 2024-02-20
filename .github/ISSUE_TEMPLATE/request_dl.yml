@@ -2,6 +2,8 @@ name: "동적 호출 허용량 설정 요청"
 description: "커머스API 플랫폼 내 동적 호출 허용량 기능 사전 설정 요청"
 title: "[설정요청] 동적 호출 허용량 설정 요청"
 labels: []
+assignees:
+  - commerce-api-naver
 body:
   - type: markdown
     attributes:
