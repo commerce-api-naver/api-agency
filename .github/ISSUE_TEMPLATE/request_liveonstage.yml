@@ -2,6 +2,8 @@ name: "라이브 서비스 전환 요청"
 description: "실제 서비스 제공 준비를 완료한 API대행사의 대행사 목록 내 표시 요청"
 title: "[운영전환] 라이브 서비스 전환 요청"
 labels: []
+assignees:
+  - commerce-api-naver
 body:
   - type: markdown
     attributes:

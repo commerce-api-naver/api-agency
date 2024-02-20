@@ -2,6 +2,8 @@ name: "애플리케이션 재발송 요청"
 description: "대행사 애플리케이션 인증정보(애플리케이션 ID, Secret) 재발송 요청"
 title: "[인증정보] 대행사 애플리케이션 인증정보 재발송 요청"
 labels: []
+assignees:
+  - commerce-api-naver
 body:
   - type: markdown
     attributes:
